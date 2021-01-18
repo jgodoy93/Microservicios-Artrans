@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: GATEWAY-SERVICE
+  cloud:
+    gateway:
+      routes:
+        - id: margarita-service
+          uri: lb://MARGARITA-SERVICE
+          predicates:
+            - Path=/margarita/**
+        - id: service-test1msv
+          uri: lb://SERVICE-TEST1MSV
+          predicates:
+            - Path=/test1/**
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://localhost:8099/eureka/
+  instance:
+    hostname: localhost
+server:
+  port: 8080
